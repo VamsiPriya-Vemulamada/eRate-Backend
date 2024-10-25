@@ -3,6 +3,7 @@ import morgan from "morgan"
 import mongoose from "mongoose"
 import dotenv from "dotenv"
 import userRouter from "./routes/user.js"
+import eventRouter from "./routes/event.js"
 
 //======== setting environment variables=========
 dotenv.config();
@@ -25,6 +26,7 @@ app.use(express.urlencoded({extended: true})); // for url
 
 //=========== ROUTES ==================
 app.use("/user",userRouter);
+app.use("/events", eventRouter);
 app.get('/', (req,res)=>
     {
         res.send("Welcome to the API")

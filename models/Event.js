@@ -1,21 +1,23 @@
 import mongoose from "mongoose";
+import Participant from "./Participant.js";
 
 const eventSchema = new mongoose.Schema({
     eventname:{
         type:String,
         required: true,
 },
-date:{
+    date:{
         type:Date,
         required:true,
     },
+
     location:{
         type:String,
         required:true,
     },
-  Guests: [{
+    participants: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User', // Reference to User model for participants
+        ref: 'Participant', // Reference to Participant model for participants
     }],
     createdBy:{
         type:mongoose.Schema.Types.ObjectId,
@@ -40,5 +42,5 @@ eventSchema.pre('save', function (next) {
     next();
 });
 
-
 const Event = mongoose.model("Events", eventSchema)
+export default Event;

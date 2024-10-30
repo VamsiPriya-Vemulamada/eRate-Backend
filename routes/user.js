@@ -6,9 +6,11 @@ const router = new Router();
 // CURD OPERATIONS
 //GET Method: READ
 // Post Method: Create
+// creating signup
+
 router.post("/signup", signup);
+// posting Login
 router.post("/login", login);
-
-
+router.get("/login",login)
 
 export default router;

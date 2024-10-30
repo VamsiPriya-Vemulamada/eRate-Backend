@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-// Define the Participant schema
+// creating the Participant schema
 const participantSchema = new mongoose.Schema({
     fullname: {
         type: String,

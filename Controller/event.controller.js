@@ -3,10 +3,11 @@ import participant from "../models/Participant.js"
 // for creating an event
 export const createEvent = async (req,res) => {
     try{
-        const{ eventname,date,location,createdBy} = req.body;
+        const{ eventname,date,location} = req.body;
         const newEvent = new Event({
-            eventname,date,location,createdBy
+            eventname,date,location
         });
+        // Saving the events
         const savedEvent = await newEvent.save();
         res.status(201).json({
             message: "Event created successfully",
@@ -19,7 +20,7 @@ export const createEvent = async (req,res) => {
         res.status(500).json({ message: "Internal server error" });
     }
 }
-// Adding the participant
+//===================================== Adding the participant ===============================
 
 export const addParticipatoEvent = async(req, res) => {
     try {
@@ -62,7 +63,7 @@ catch (error) {
     res.status(500).json({ message: "Internal server error" });
 }
 }
-// Updating the participants
+// ================================Updating the participants===============================
 
 export const updateParticipant = async(req,res)=>{
     try{

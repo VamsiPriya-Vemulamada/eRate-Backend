@@ -2,8 +2,10 @@ import express from "express"
 import morgan from "morgan"
 import mongoose from "mongoose"
 import dotenv from "dotenv"
+import cors from "cors"
 import userRouter from "./routes/user.js"
 import eventRouter from "./routes/event.js"
+import ratingRouter from "./routes/rating.js"
 
 //======== setting environment variables=========
 dotenv.config();
@@ -23,10 +25,12 @@ catch(error){
 app.use(morgan('dev')); // used for monitoring
 app.use(express.json()); // parse data to the body
 app.use(express.urlencoded({extended: true})); // for url
+app.use(cors());
 
 //=========== ROUTES ==================
 app.use("/user",userRouter);
 app.use("/events", eventRouter);
+app.use("/rating", ratingRouter)
 app.get('/', (req,res)=>
     {
         res.send("Welcome to the API")

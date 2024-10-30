@@ -1,13 +1,14 @@
 import mongoose from "mongoose";
-import Participant from "./Participant.js";
+import participant from "./Participant.js";
 
+// creating event Schema
 const eventSchema = new mongoose.Schema({
     eventname:{
         type:String,
         required: true,
 },
     date:{
-        type:Date,
+        type:String,
         required:true,
     },
 
@@ -15,24 +16,12 @@ const eventSchema = new mongoose.Schema({
         type:String,
         required:true,
     },
-    participants: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Participant', // Reference to Participant model for participants
-    }],
-    createdBy:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"User",
-        required:'true',
-    },
-    createdAt: {
-        type: Date,
-        default: Date.now, // Set to the current date by default
-    },
-    updatedAt: {
-        type: Date,
-        default: Date.now, // Set to the current date by default
-    },
-
+    // // participants: [participant], // Array of participants using the participant schema
+    // // updatedAt: {
+    // //     type: Date,
+    // //     default: Date.now
+    // }
+    
 });
 
 // Middleware to update the updatedAt field before saving
@@ -44,3 +33,4 @@ eventSchema.pre('save', function (next) {
 
 const Event = mongoose.model("Events", eventSchema)
 export default Event;
+

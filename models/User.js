@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 import validator from 'validator' // this is used for the library to validate the files and install the package using npm install validator
 
+// creating UserSchema
 const userSchema = new mongoose.Schema({
 username:{
     type:String,
@@ -13,15 +14,14 @@ email:{
     type:String,
     required:true,
     unique: true,
-    validate: [validator.isEmail, "Please provide valid email!"],
+    validate: [validator.isEmail, "Please provide valid email!"] // this is validate if it is email or not , also need to install the package for validator npm i validator
 },
-password:
+password:   
 {
 type:String,
     required:true,
     unique: true,
-    minlength: 3,
-    
+    minlength: 3
 }
 
 }, {timestamps: true});

@@ -5,20 +5,23 @@ export const signup = async(req, res) => {
     try {
         // Extract fullname, email, and password from the request body
         const { username, email, password } = req.body;
+        console.log(username,email,password)
         // Check if a user with the given email already exists in the database
         const user = await User.findOne({ email });
+        console.log(user)
         if (user) {
             // If user already exists, return a 400 Bad Request response with an error message
             return res.status(400).json({ message: "User already exists" });
         }
         // Hash the user's password before saving it to the database
-        const hashPassword = await bcryptjs.hash(password, 10);
+        // const hashPassword = await bcryptjs.hash(password, 5);
         // create the password
         const createdUser = new User({
             username: username,
             email: email,
-            password: hashPassword,
+            password: password,
         });
+        console.log(createdUser)
         // save for the user database
         await createdUser.save();
         res.status(201).json({
@@ -31,7 +34,7 @@ export const signup = async(req, res) => {
         });
     } catch (error) {
         console.log("Error: " + error.message);
-        res.status(500).json({ message: "Internal server error" });
+        res.status(500).json({ message: error.message });
     }
 };
 
@@ -41,8 +44,21 @@ export const login = async(req, res) => {
         // Extract email and password from the request body
         const { email, password } = req.body;
          // Find the user by email in the database
+        //  const sample = await User.findOne({
+        //     username
+        //  });
+         
+        //  if (!sample) {
+        //     return res.status(400).json({ message: "Invalid email or password" });
+        // }
+
         const user = await User.findOne({ email });
-        const isMatch = await bcryptjs.compare(password, user.password);
+        console.log(user)
+        if (!user) {
+            return res.status(400).json({ message: "Invalid email or password" });
+        }
+
+    const isMatch = (password == user.password);
         if (!user || !isMatch) {
             return res.status(400).json({ message: "Invalid username or password" });
         } else {
@@ -50,8 +66,8 @@ export const login = async(req, res) => {
                 message: "Login successful",
                 user: {
                     _id: user._id,
-                    fullname: user.fullname,
                     email: user.email,
+                    username: user.username
                 },
             });
         }

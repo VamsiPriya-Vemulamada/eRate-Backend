@@ -16,11 +16,11 @@ const eventSchema = new mongoose.Schema({
         type:String,
         required:true,
     },
-    // // participants: [participant], // Array of participants using the participant schema
-    // // updatedAt: {
-    // //     type: Date,
-    // //     default: Date.now
-    // }
+    //  participants: [{ type: mongoose.Schema.Types.ObjectId,ref:participant}], // Array of participants using the participant schema
+    // updatedAt: {
+    //     type:Date,
+    //  default: Date.now
+    //  }
     
 });
 

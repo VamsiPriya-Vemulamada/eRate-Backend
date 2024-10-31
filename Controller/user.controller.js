@@ -51,7 +51,7 @@ export const login = async(req, res) => {
         //  if (!sample) {
         //     return res.status(400).json({ message: "Invalid email or password" });
         // }
-
+// saving the User details in user attribute
         const user = await User.findOne({ email });
         console.log(user)
         if (!user) {

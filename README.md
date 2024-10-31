@@ -32,7 +32,8 @@ This is a full stack application which is built with using MERN technologies.Bac
 This is an example of how to list things you need to use the software and how to install them.
 * npm
   ```sh
- npm i express mongodb dotenv cors
+  npm i express mongodb dotenv cors
+  
 ### Prerequisites
   ```
 ### Steps to Install
